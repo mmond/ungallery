@@ -1,10 +1,10 @@
-= Grabber Gallery
+= Un Gallery
 
-Grabs a directory tree of photos and embeds into WordPress CMS.  The main value of Grabber Gallery is zero management of 
+Grabs a directory tree of photos and embeds into WordPress CMS.  The main value of Un Gallery is zero management of the photo galleries.  After installing Un Gallery, upload, move, delete, and edit photos directly on the server.  Un Gallery will pick up all the changes dynamically.
 
 This script is still alpha.  Feel free to use it, extend it or contact me with questions.
 
-Many pieces of the scripts are taken from other published sources and noted inline.
+Much of the script is taken from other published sources and noted inline.
 
 Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
@@ -13,7 +13,7 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 * Copy scripts to <wordpress root>/tools/gallery/		(This really needs to be made just ./gallery/)
 * Create WordPress Pages with php insert  (add details here)
-* Make style sheet update
+* Make style sheet updates (does non-Atahualpa work?)
 
 === Dependencies
 
