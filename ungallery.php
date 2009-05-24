@@ -23,22 +23,20 @@ if ($gallery == "") {
 	$gallerypath =  explode("/", $gallery);
 	
 	//  Render the Up directory links
+	print '<a href="./gallery">Top</a>';
 	foreach ($gallerypath as $key => $level) {
 		$parentpath = $parentpath . $level ;
 		//  Unless it is the current directory
 		if ($key < count($gallerypath) - 1) {
-			print '<b> / <a href="?gallery&gallerylink='. $parentpath .'" >'. $level .'</a></b>';
+			print ' / <a href="?gallery&gallerylink='. $parentpath .'" >'. $level .'</a>';
 		}  else {
 			//  In that case render the current gallery name, but don't hyperlink
-			print "<b> / $level</b>";
+			print " / $level";
 		}
 		$parentpath = $parentpath . "/";
 	}
 }
-
-if ($gallery !== "") print '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href=".?content=tools/gallery/zip.php&gallerylink=' . $gallery . '" title="Download a zipped archive of all photos in this gallery">-zip-</a>
-<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-
+	
 									// Create the arrays with the dir's media files
 $dp = opendir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery);
 while ($filename = readdir($dp)) {
@@ -64,7 +62,7 @@ if($movie_array) {
 }
 closedir($dp);
 
-print 'Sub Galleries&nbsp;&nbsp;/&nbsp;&nbsp;';
+print '&nbsp;/&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Sub Galleries&nbsp;:&nbsp;&nbsp;';
 									//  Render the Subdirectory links
 $dp = opendir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery);
 
@@ -105,7 +103,6 @@ if (!isset($src) && isset($pic_array)) {
 		}            	
 	}	
 } else {														// Render the browsing version, link to original, last/next picture, and link to parent gallery
-$page_id=689;													//	Set WordPress target page id (later page name) to use two-cell.php template page
 if (isset($src)) {
 	if (!strstr($src, "../pics/")) die;     					//  If "../pics" is not in path it may be an attempt to read files outside gallery, so redirect to gallery root
 	$filename = substr($src, $lastslash + 1);
@@ -114,9 +111,9 @@ if (isset($src)) {
 
 																//  Display the current/websize pic
 																//  If it is a jpeg include the exif rotation logic
-	print '<table class="two-cell"><tr>';						//	Begin the WordPress Atahualpa 2 cell table
-	if(stristr($src, ".JPG")) print '<td class="cell1"><a href="tools/gallery/source.php?pic=' . $src . '"><img src="./'. $dir .'/jpeg_rotate.php?src='. $src. '&w=650"></a></td><td class="cell2">';
-		else print '<td class="cell1"><a href="tools/gallery/source.php?pic=' . $src . '"><img src="./'. $dir .'/thumb.php?src='. $src. '&w=650"></a></td><td class="cell2">';
+	print '<table class="one-cell"><tr>';						//	Begin the WordPress Atahualpa 2 cell table
+	if(stristr($src, ".JPG")) print '<td class="cell1"><a href="ungallery/source.php?pic=' . $src . '"><img src="./'. $dir .'/jpeg_rotate.php?src='. $src. '&w=650"></a></td><td class="cell2">';
+		else print '<td class="cell1"><a href="ungallery/source.php?pic=' . $src . '"><img src="./'. $dir .'/thumb.php?src='. $src. '&w=650"></a></td><td class="cell2">';
 
 	if ($before_filename) {										// Display the before thumb, if it exists
 																//  If it is a jpeg include the exif rotation logic

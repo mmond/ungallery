@@ -20,6 +20,7 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 === Dependencies
 
 * PHP's GD lib installed on server
+* *nix file system (I assume anyway)
 
 == To do
 
