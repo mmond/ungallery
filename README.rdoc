@@ -1,6 +1,6 @@
 = Un Gallery
 
-Grabs a directory tree of photos and embeds into WordPress CMS.  The main value of Un Gallery is zero management of the photo galleries.  After installing Un Gallery, upload, move, delete, and edit photos directly on the server.  Un Gallery will pick up all the changes dynamically.
+Grabs a directory tree of photos and embeds into WordPress CMS.  The main value of Un Gallery is zero management of the photo galleries.  After installing Un Gallery, you can upload, move, delete, and edit photos directly on the server.  Un Gallery will pick up all the changes dynamically with no changes made within WordPress
 
 This script is still alpha.  Feel free to use it, extend it or contact me with questions.
 
@@ -23,11 +23,13 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 == To do
 
-Add link to page title to return to top of gallery
-Fix styling to remove table background and hover colors
-Fix extra slashes added during browsing
-Enable zips
-Enable hidden browsing
+* Make scripts a plugin
+* Add link to page title to return to top of gallery
+* Fix styling to remove table background and hover colors
+* Fix extra slashes added during browsing
+* Enable zips
+* Enable hidden browsing
+* Test non-Atahualpa compatibility
 
 == License
 
