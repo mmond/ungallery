@@ -2,10 +2,11 @@
 
 Grabs a directory tree of photos and embeds into WordPress CMS.  The main value of Grabber Gallery is zero management of 
 
-<i>This script is still alpha.  Feel free to use it, extend it or contact me with questions.</i>.
+This script is still alpha.  Feel free to use it, extend it or contact me with questions.
 
-Mark Reynolds (http://markpreynolds.com)
-http://github.com/mmond
+Many pieces of the scripts are taken from other published sources and noted inline.
+
+Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 
 == Installation
