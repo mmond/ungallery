@@ -11,6 +11,8 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 == Installation
 
+=== Steps
+
 * Copy scripts to <wordpress root>/tools/gallery/		(This really needs to be made just ./gallery/)
 * Create WordPress Pages with php insert  (add details here)
 * Make style sheet updates (does non-Atahualpa work?)
@@ -18,6 +20,14 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 === Dependencies
 
 * PHP's GD lib installed on server
+
+== To do
+
+Add link to page title to return to top of gallery
+Fix styling to remove table background and hover colors
+Fix extra slashes added during browsing
+Enable zips
+Enable hidden browsing
 
 == License
 
