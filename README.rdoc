@@ -23,12 +23,12 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 == To do
 
-* Make scripts a plugin
+* Make scripts a WordPress plugin
 * Add link to page title to return to top of gallery
 * Fix styling to remove table background and hover colors
 * Fix extra slashes added during browsing
-* Enable zips
-* Enable hidden browsing
+* Enable zip archives
+* Enable hidden browsing, variablize hidden tag
 * Test non-Atahualpa compatibility
 
 == License

@@ -1,6 +1,6 @@
 <?
-// Map short variables globals=off version's long syntax
 $dir = "tools/gallery";
+$hidden = file_get_contents("hidden.txt");
 $gallery = $_GET['gallerylink'];
 $src = $_GET['src'];
 $w = $_GET['w'];
@@ -26,7 +26,7 @@ if ($gallery == "") {
 		$parentpath = $parentpath . $level ;
 		//  Unless it is the current directory
 		if ($key < count($gallerypath) - 1) {
-			print '<b> / <a href="?page_id=679&preview=true&gallerylink='. $parentpath .'" >'. $level .'</a></b>';
+			print '<b> / <a href="?gallery&gallerylink='. $parentpath .'" >'. $level .'</a></b>';
 		}  else {
 			//  In that case render the current gallery name, but don't hyperlink
 			print "<b> / $level</b>";
@@ -63,23 +63,20 @@ if($movie_array) {
 }
 closedir($dp);
 
-									//  If this is a gallery marked hidden, link to the index of other galleries marked hidden
-if($level == "hidden") print '<a href="./?content=tools/gallery/hidden.php">- Index of all hidden galleries - </a><br>';
-	
 print 'Sub Galleries&nbsp;&nbsp;/&nbsp;&nbsp;';
 									//  Render the Subdirectory links
 $dp = opendir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery);
 
 									//  If it is a subdir and not set as hidden, enter it into the array
 while ($subdir = readdir($dp)) {
-	if (is_dir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery. "/". $subdir) && $subdir !="thumb_cache" && $subdir != "." && $subdir != ".." && !strstr($subdir, "hid")) {
+	if (is_dir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery. "/". $subdir) && $subdir !="thumb_cache" && $subdir != "." && $subdir != ".." && !strstr($subdir, $hidden)) {
 		$subdirs[] = $subdir;
 	}
 }
 if($subdirs) {						//  List each subdir and link
 	sort($subdirs);	
 	foreach ($subdirs as $key => $subdir) {
-		print  '<a href="?page_id=679&preview=true&gallerylink='. $parentpath.$subdir. '" >'	.$subdir.'</a> / ';
+		print  '<a href="?gallery&gallerylink='. $parentpath.$subdir. '" >'	.$subdir.'</a> / ';
 	}
 }
 closedir($dp);
@@ -96,9 +93,9 @@ if (!isset($src) && isset($pic_array)) {
 	$column = 0;
 	foreach ($pic_array as $filename) {								//  Use the pic_array to assign the links and img src
 		if(stristr($filename, ".JPG")) {
-			print '<a href="?page_id=689&preview=true&src=../../pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/jpeg_rotate.php?src=../../pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>'; 				//  If it is a jpeg include the exif rotation logic
+			print '<a href="?gallery&src=../../pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/jpeg_rotate.php?src=../../pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>'; 				//  If it is a jpeg include the exif rotation logic
 	   	} else {
-			print '<a href="?page_id=689&preview=true&src=../../pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/thumb.php?src=../../pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>';    
+			print '<a href="?gallery&src=../../pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/thumb.php?src=../../pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>';    
 		}
 		$column++;
 		if ( $column == 5 ) {
@@ -122,13 +119,13 @@ if (isset($src)) {
 
 	if ($before_filename) {										// Display the before thumb, if it exists
 																//  If it is a jpeg include the exif rotation logic
-		if(stristr($before_filename, ".JPG")) print '<a href="?page_id=689&preview=true&src=../../pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=../../pics/' .$gallery.$before_filename .'"></a>';
-		else print '<a href="?page_id=689&preview=true&src=../../pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/thumb.php?src=../../pics/' .$gallery.$before_filename .'"></a>';
+		if(stristr($before_filename, ".JPG")) print '<a href="?gallery&src=../../pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=../../pics/' .$gallery.$before_filename .'"></a>';
+		else print '<a href="?gallery&src=../../pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/thumb.php?src=../../pics/' .$gallery.$before_filename .'"></a>';
 	}
 print "<br><br><br><br>";
 	if ($after_filename) {										// Display the after thumb, if it exists
-		if(stristr($after_filename, ".JPG")) print '<a href="?page_id=689&preview=true&src=../../pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=../../pics/' .$gallery.$after_filename .'"></a>';		
-		else print '<a href="?page_id=689&preview=true&src=../../pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/thumb.php?src=../../pics/' .$gallery.$after_filename .'"></a>';
+		if(stristr($after_filename, ".JPG")) print '<a href="?gallery&src=../../pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=../../pics/' .$gallery.$after_filename .'"></a>';		
+		else print '<a href="?gallery&src=../../pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/thumb.php?src=../../pics/' .$gallery.$after_filename .'"></a>';
 	}
 }
 }
