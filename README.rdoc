@@ -22,6 +22,10 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * PHP's GD lib installed on server
 * *nix file system (I assume anyway)
 
+* Exec-PHP
+* No Comments On Pages (recommended)
+* Enable permalinks per http://teamtutorials.com/web-development-tutorials/clean-url%E2%80%99s-with-wordpress. (recommended)
+
 == To do
 
 * Make scripts a WordPress plugin
