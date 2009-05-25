@@ -84,11 +84,13 @@ print '</b><br>';
 if (!isset($src) && isset($pic_array)) {		
 	if ($gallery == "") {											//  Render top level of the gallery
 		$w=650;														//  Set size of root picture
-		print '<div class="post-headline"><h1>'; 
-		include ("pics/caption.txt");								//	We also display the caption
-		print '</h1>';
 	}
 	print '<table class="one-cell"><tr><td class="cell1">';			//	Begin the WordPress Atahualpa 1 cell table
+	if (file_exists("pics/".$gallery."/banner.txt")) {
+		print '<div class="post-headline"><h1>'; 
+		include ("pics/".$gallery."/banner.txt");								//	We also display the caption from banner.txt
+		print "</h1>";
+	}
 	$column = 0;
 	foreach ($pic_array as $filename) {								//  Use the pic_array to assign the links and img src
 		if(stristr($filename, ".JPG")) {

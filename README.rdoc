@@ -8,32 +8,34 @@ Much of the script is taken from other published sources and noted inline.
 
 Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
+== Features
+
+* Unlimited depth, breadth, and number of photos in library. Mine has approx 6,000.
+* Photo library is managed outside of WordPress, access the server file system directly. Upload, change or delete many files automatically, using FTP, SCP, etc.  Un Gallery picks up these changes immediately.
+* Set optional banners
+* Hidden, private galleries
+* Support for png, jpg, bmp, mov, avi, mp3, mp4
 
 == Installation
 
-=== Steps
-
-* Copy scripts to <wordpress root>/tools/gallery/		(This really needs to be made just ./gallery/)
-* Create WordPress Pages with php insert  (add details here)
-* Make style sheet updates (does non-Atahualpa work?)
-
 === Dependencies
 
-* PHP's GD lib installed on server
-* *nix file system (I assume anyway)
-
+* PHP's GD lib on server
+* *nix file system (I assume)
 * Exec-PHP
-* No Comments On Pages (recommended)
 * Enable permalinks per http://teamtutorials.com/web-development-tutorials/clean-url%E2%80%99s-with-wordpress. (recommended)
+
+=== Steps
+
+* Copy scripts to <wordpress root>/ungallery/
+* Create WordPress page called "Gallery" with php insert: <? include ("ungallery/ungallery.php") ?>
 
 == To do
 
 * Make scripts a WordPress plugin
-* Add link to page title to return to top of gallery
 * Fix styling to remove table background and hover colors
 * Fix extra slashes added during browsing
 * Enable zip archives
-* Enable hidden browsing, variablize hidden tag
 * Test non-Atahualpa compatibility
 
 == License
