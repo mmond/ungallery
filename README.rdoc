@@ -11,9 +11,10 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 == Features
 
 * Unlimited depth, breadth, and number of photos in library. Mine has approx 6,000.
-* Photo library is managed outside of WordPress, access the server file system directly. Upload, change or delete many files automatically, using FTP, SCP, etc.  Un Gallery picks up these changes immediately.
+* Photo library is managed outside of WordPress, simply via FTP, SCP, etc.  Un Gallery sees updates immediately.
 * Set optional banners
 * Hidden, private galleries
+* Thumbnail cache files are added to photo directory for faster page loads
 * Support for png, jpg, bmp, mov, avi, mp3, mp4
 
 == Installation
@@ -29,6 +30,8 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 * Copy scripts to <wordpress root>/ungallery/
 * Create WordPress page called "Gallery" with php insert: <? include ("ungallery/ungallery.php") ?>
+* Copy directories containing photos to <WordPress root>/pics/
+* Copy .htacess from ./ungallery to ./pics/
 
 == To do
 
@@ -37,6 +40,11 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Fix extra slashes added during browsing
 * Enable zip archives
 * Test non-Atahualpa compatibility
+
+== Bugs
+
+* Empty directories mess up table formatting
+* Arriving at the gallery page via a WordPress search widget breaks url args
 
 == License
 
