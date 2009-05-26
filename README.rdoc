@@ -31,7 +31,7 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Copy scripts to <wordpress root>/ungallery/
 * Create WordPress page called "Gallery" with php insert: <? include ("ungallery/ungallery.php") ?>
 * Copy directories containing photos to <WordPress root>/pics/
-* Copy .htacess from ./ungallery to ./pics/
+* Move .htacess from ./ungallery to ./pics/
 
 == To do
 
@@ -41,6 +41,13 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Enable zip archives
 * Test non-Atahualpa compatibility
 * Go to current month link?
+
+== Notes
+
+* To display a caption over a gallery, add a file named banner.txt to that directory with the desired text.
+* The top level directory is intended to have a single, larger picture displayed, so only only one picture file should be placed there.
+* To mark a gallery hidden, edit the ./ungallery/hidden.txt file. If the content of hidden.txt is: "hidden" for example then any directories you create named "hidden", will not be visible via gallery browsing.
+
 
 == Bugs
 
