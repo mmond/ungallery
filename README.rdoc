@@ -28,7 +28,7 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 === Steps
 
-* Copy scripts to <wordpress root>/ungallery/
+* Copy scripts to <wordpress root>/ungallery/  (current via "git checkout git://github.com/mmond/ungallery.git")
 * Create WordPress page called "Gallery" with php insert: <? include ("ungallery/ungallery.php") ?>
 * Copy directories containing photos to <WordPress root>/pics/
 * Move .htacess from ./ungallery to ./pics/
