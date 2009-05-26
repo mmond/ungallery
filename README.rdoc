@@ -1,8 +1,8 @@
 = Un Gallery
 
-Grabs a directory tree of photos and embeds into WordPress CMS.  The main value of Un Gallery is zero management of the photo galleries.  After installing Un Gallery, you can upload, move, delete, and edit photos directly on the server.  Un Gallery will pick up all the changes dynamically with no changes made within WordPress
+Imports a directory tree of graphic files and embeds them in WordPress.  The main value of Un Gallery is zero management of the photo gallery within WordPress.  After configuring Un Gallery, you can upload, move, delete and edit the photo files directly on the server.  Un Gallery will pick up all the changes made to the file hierarchy immediately.
 
-This script is still alpha.  Feel free to use it, extend it or contact me with questions.
+This script is still beta.  Feel free to use it, extend it or contact me with questions.
 
 Much of the script is taken from other published sources and noted inline.
 
@@ -11,8 +11,8 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 == Features
 
 * Unlimited depth, breadth, and number of photos in library. Mine has approx 6,000.
-* Photo library is managed outside of WordPress, simply via FTP, SCP, etc.  Un Gallery sees updates immediately.
-* Set optional banners
+* Photo library is managed outside of WordPress, simply update via FTP, SCP, etc.  Un Gallery sees changes immediately.
+* Set optional banner captions
 * Hidden, private galleries
 * Thumbnail cache files are added to photo directory for faster page loads
 * Support for png, jpg, bmp, mov, avi, mp3, mp4
@@ -40,6 +40,7 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Fix extra slashes added during browsing
 * Enable zip archives
 * Test non-Atahualpa compatibility
+* Go to current month link?
 
 == Bugs
 
