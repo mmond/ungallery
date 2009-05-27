@@ -81,14 +81,12 @@ if($subdirs) {						//  List each subdir and link
 closedir($dp);
 print '</b><br>';
 
-if (!isset($src) && isset($pic_array)) {		
-	if ($gallery == "") {											//  Render top level of the gallery
-		$w=650;														//  Set size of root picture
-	}
+if (!isset($src) && isset($pic_array)) {							//	If we are not in browse view,
+	if ($gallery == "") $w=650;									//  Set size of top level gallery picture
 	print '<table class="one-cell"><tr><td class="cell1">';			//	Begin the WordPress Atahualpa 1 cell table
 	if (file_exists("pics/".$gallery."/banner.txt")) {
 		print '<div class="post-headline"><h1>'; 
-		include ("pics/".$gallery."/banner.txt");								//	We also display the caption from banner.txt
+		include ("pics/".$gallery."/banner.txt");					//	We also display the caption from banner.txt
 		print "</h1>";
 	}
 	$column = 0;
