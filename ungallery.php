@@ -8,8 +8,8 @@ $w = $_GET['w'];
 if (!isset($dir)) $dir = ".";
 
 if (isset($src)) {		 				//	If we are browsing a gallery, get the gallery name from the src url
-	$lastslash =  strrpos($src, "/");	// 	Trim the filename off the end of the src link and 
-	$gallery =  substr($src, 5, $lastslash - 5 ) . "/";   
+	$lastslash =  strrpos($src, "/");	// 	Trim the filename off the end of the src link
+	$gallery =  substr($src, 5, $lastslash - 5 );   
 }
 
 //	Is the following line needed any longer?
@@ -29,7 +29,7 @@ if ($gallery == "") {
 		$parentpath = $parentpath . $level ;
 		//  Unless it is the current directory
 		if ($key < count($gallerypath) - 1) {
-			print ' / <a href="?gallery&gallerylink='. $parentpath .'" >'. $level .'</a>';
+			print ' / <a href="?gallerylink='. $parentpath .'" >'. $level .'</a>';
 		}  else {
 			//  In that case render the current gallery name, but don't hyperlink
 			print " / $level";
@@ -58,7 +58,7 @@ if($movie_array) {
 	print "Movies:&nbsp;&nbsp;";
 	foreach ($movie_array as $filename => $filesize) {
 		print  '
-			<a href="pics/'. $parentpath.$subdir.$filename. '" title="Movies may take much longer to download.  This file size is '. $filesize .'">'	.$filename.'</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+			<a href="'. substr($parentpath, 0, strlen($parentpath) -1).$subdir.$filename. '" title="Movies may take much longer to download.  This file size is '. $filesize .'">'	.$filename.'</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 	}
 }
 closedir($dp);
@@ -73,17 +73,18 @@ while ($subdir = readdir($dp)) {
 		$subdirs[] = $subdir;
 	}
 }
+
 if($subdirs) {						//  List each subdir and link
 	sort($subdirs);	
 	foreach ($subdirs as $key => $subdir) {
-		print  '<a href="?gallery&gallerylink='. $parentpath.$subdir. '" >'	.$subdir.'</a> / ';
+		print  '<a href="?gallerylink='. $parentpath.$subdir. '" >'	.$subdir.'</a> / ';
 	}
 }
 closedir($dp);
 print '</b><br>';
 
 if (!isset($src) && isset($pic_array)) {							//	If we are not in browse view,
-	if ($gallery == "") $w=650;									//  Set size of top level gallery picture
+	if ($gallery == "") $w=650;										//  Set size of top level gallery picture
 	print '<table class="one-cell"><tr><td class="cell1">';			//	Begin the WordPress Atahualpa 1 cell table
 	if (file_exists("pics/".$gallery."/banner.txt")) {
 		print '<div class="post-headline"><h1>'; 
@@ -93,9 +94,9 @@ if (!isset($src) && isset($pic_array)) {							//	If we are not in browse view,
 	$column = 0;
 	foreach ($pic_array as $filename) {								//  Use the pic_array to assign the links and img src
 		if(stristr($filename, ".JPG")) {
-			print '<a href="?gallery&src=pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/jpeg_rotate.php?src=pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>'; 				//  If it is a jpeg include the exif rotation logic
+			print '<a href="?src=pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/jpeg_rotate.php?src=pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>'; 				//  If it is a jpeg include the exif rotation logic
 	   	} else {
-			print '<a href="?gallery&src=pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/thumb.php?src=pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>';    
+			print '<a href="?src=pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/thumb.php?src=pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>';    
 		}
 		$column++;
 		if ( $column == 5 ) {
@@ -105,7 +106,7 @@ if (!isset($src) && isset($pic_array)) {							//	If we are not in browse view,
 	}	
 } else {														// Render the browsing version, link to original, last/next picture, and link to parent gallery
 if (isset($src)) {
-	if (!strstr($src, "pics/")) die;     					//  If "pics" is not in path it may be an attempt to read files outside gallery, so redirect to gallery root
+	if (!strstr($src, "pics/")) die;     						//  If "pics" is not in path it may be an attempt to read files outside gallery, so redirect to gallery root
 	$filename = substr($src, $lastslash + 1);
 	$before_filename = $pic_array[array_search($filename, $pic_array) - 1 ];
 	$after_filename = $pic_array[array_search($filename, $pic_array) + 1 ];
@@ -118,13 +119,13 @@ if (isset($src)) {
 
 	if ($before_filename) {										// Display the before thumb, if it exists
 																//  If it is a jpeg include the exif rotation logic
-		if(stristr($before_filename, ".JPG")) print '<a href="?gallery&src=pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=pics/' .$gallery.$before_filename .'"></a>';
-		else print '<a href="?gallery&src=pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/thumb.php?src=pics/' .$gallery.$before_filename .'"></a>';
+		if(stristr($before_filename, ".JPG")) print '<a href="?src=pics/' . $gallery."/".$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=pics/' .$gallery."/".$before_filename .'"></a>';
+		else print '<a href="?src=pics/' . $gallery."/".$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/thumb.php?src=pics/' .$gallery."/".$before_filename .'"></a>';
 	}
 print "<br><br><br><br>";
 	if ($after_filename) {										// Display the after thumb, if it exists
-		if(stristr($after_filename, ".JPG")) print '<a href="?gallery&src=pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=pics/' .$gallery.$after_filename .'"></a>';		
-		else print '<a href="?gallery&src=pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/thumb.php?src=pics/' .$gallery.$after_filename .'"></a>';
+		if(stristr($after_filename, ".JPG")) print '<a href="?src=pics/' . $gallery."/".$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=pics/' .$gallery."/".$after_filename .'"></a>';		
+		else print '<a href="?src=pics/' . $gallery."/".$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/thumb.php?src=pics/' .$gallery."/".$after_filename .'"></a>';
 	}
 }
 }
