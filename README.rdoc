@@ -31,32 +31,28 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 === Steps
 
-* Copy scripts to <wordpress root>/ungallery/  (current via "git checkout git://github.com/mmond/ungallery.git")
-* Create WordPress page called "Gallery" with php insert: <? include ("ungallery/ungallery.php") ?>
-* Copy directories containing photos to <WordPress root>/pics/
-* Move .htacess from ./ungallery to ./pics/
+* Upload scripts to the /wp-content/plugins/ directory.  (currently via "git checkout git://github.com/mmond/ungallery.git")
+* Create WordPress page called "Gallery" with the following php insert: <? include ("ungallery/ungallery.php") ?>
+* Copy photo directory tree to /wp-content/plugins/ungallery/pics/ or create a symlink called "pics" to your picture directory
 
 == To do
 
 * Make scripts a WordPress plugin
 * Fix styling to remove table background and hover colors
-* Fix extra slashes added during browsing
 * Enable zip archives
-* Test non-Atahualpa compatibility
 * Go to current month link?
 
 == Notes
 
 * To display a caption over a gallery, add a file named banner.txt to that directory with the desired text.
 * The top level directory is intended to have a single, larger picture displayed, so only only one picture file should be placed there.
-* To mark a gallery hidden, edit the ./ungallery/hidden.txt file. If the content of hidden.txt is: "hidden" for example then any directories you create named "hidden", will not be visible via gallery browsing.
+* To mark a gallery hidden, edit the hidden.txt file. If the content of hidden.txt is: "hidden" for example then any directories you create named "hidden", will not be visible via gallery browsing.
 
 
 == Bugs
 
 * Empty directory messes up table formatting
 * Arriving at the gallery page via a WordPress search widget breaks url args
-* current .htaccess scheme breaks direct linking to movie files
 
 == License
 
