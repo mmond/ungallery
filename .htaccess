@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Password Required"
-AuthUserFile /does_not_exist
-Require valid-user
