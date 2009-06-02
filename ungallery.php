@@ -1,6 +1,6 @@
 <?
 $dir = "ungallery";
-$hidden = file_get_contents("ungallery/hidden.txt");
+$hidden = file_get_contents("pics/hidden.txt");
 $gallery = $_GET['gallerylink'];
 $src = $_GET['src'];
 $w = $_GET['w'];

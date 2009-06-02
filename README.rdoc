@@ -16,6 +16,9 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Hidden, private galleries
 * Thumbnail cache files are added to photo directory for faster page loads
 * Support for png, jpg, bmp, mov, avi, mp3, mp4
+* Automatic image rotation of jpegs with exif orientation
+* Gallery hierarchy breadcrumbs and with links to parent galleries and sub-galleries
+* Multiple gallery views:  Top level intro, thumbnails, browsing previous and next pictures.
 
 == Installation
 
@@ -51,15 +54,15 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 == Bugs
 
-* Empty directories mess up table formatting
+* Empty directory messes up table formatting
 * Arriving at the gallery page via a WordPress search widget breaks url args
+* current .htaccess scheme breaks direct linking to movie files
 
 == License
 
 The MIT License
 
-Copyright (c) 2009 Mark Reynolds
-
+	
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
