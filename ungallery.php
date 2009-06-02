@@ -1,14 +1,15 @@
 <?
 $dir = "wp-content/plugins/ungallery";
+$pic_root = $_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/ungallery/pics/";
 $hidden = file_get_contents("wp-content/plugins/ungallery/pics/hidden.txt");
 $gallery = $_GET['gallerylink'];
 $src = $_GET['src'];
 $w = $_GET['w'];
 if (!isset($dir)) $dir = ".";
 
-if (isset($src)) {		// Trim the filename off the end of the src link and .. off the beginning
-	$lastslash =  strrpos($src, "/");
-	$gallery =  substr($src, 8, $lastslash - 7);   
+if (isset($src)) {		 				//	If we are browsing a gallery, get the gallery name from the src url
+	$lastslash =  strrpos($src, "/");	// 	Trim the filename off the end of the src link and 
+	$gallery =  substr($src, 5, $lastslash - 5 ) . "/";   
 }
 
 //	Is the following line needed any longer?
@@ -38,14 +39,14 @@ if ($gallery == "") {
 }
 	
 									// Create the arrays with the dir's media files
-$dp = opendir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery);
+$dp = opendir($pic_root.$gallery);
 while ($filename = readdir($dp)) {
-	if (!is_dir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery. "/". $filename))  {  // If it's a file, begin
+	if (!is_dir($pic_root.$gallery. "/". $filename))  {  // If it's a file, begin
 			$pic_types = array("JPG", "jpg", "GIF", "gif", "PNG", "png"); 		
 			if (in_array(substr($filename, -3), $pic_types)) $pic_array[] = $filename;							// If it's a picture, add it to thumb array
 			else {
 				$movie_types = array("AVI", "avi", "MOV", "mov", "MP3", "mp3", "MP4", "mp4");								
-				if (in_array(substr($filename, -3), $movie_types)) $movie_array[$filename] = size_readable(filesize($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery. "/". $filename)); 	
+				if (in_array(substr($filename, -3), $movie_types)) $movie_array[$filename] = size_readable(filesize($pic_root.$gallery. "/". $filename)); 	
 									// If it's a movie, add name and size to the movie array
 			}						
 	}
@@ -64,11 +65,11 @@ closedir($dp);
 
 print '&nbsp;/&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Sub Galleries&nbsp;:&nbsp;&nbsp;';
 									//  Render the Subdirectory links
-$dp = opendir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery);
+$dp = opendir($pic_root.$gallery);
 
 									//  If it is a subdir and not set as hidden, enter it into the array
 while ($subdir = readdir($dp)) {
-	if (is_dir($_SERVER['DOCUMENT_ROOT']."/pics/".$gallery. "/". $subdir) && $subdir !="thumb_cache" && $subdir != "." && $subdir != ".." && !strstr($subdir, $hidden)) {
+	if (is_dir($pic_root.$gallery. "/". $subdir) && $subdir !="thumb_cache" && $subdir != "." && $subdir != ".." && !strstr($subdir, $hidden)) {
 		$subdirs[] = $subdir;
 	}
 }
@@ -112,8 +113,8 @@ if (isset($src)) {
 																//  Display the current/websize pic
 																//  If it is a jpeg include the exif rotation logic
 	print '<table class="one-cell"><tr>';						//	Begin the WordPress Atahualpa 2 cell table
-	if(stristr($src, ".JPG")) print '<td class="cell1"><a href="ungallery/source.php?pic=' . $src . '"><img src="./'. $dir .'/jpeg_rotate.php?src='. $src. '&w=650"></a></td><td class="cell2">';
-		else print '<td class="cell1"><a href="ungallery/source.php?pic=' . $src . '"><img src="./'. $dir .'/thumb.php?src='. $src. '&w=650"></a></td><td class="cell2">';
+	if(stristr($src, ".JPG")) print '<td class="cell1"><a href="'. $dir .'/source.php?pic=' . $src . '"><img src="./'. $dir .'/jpeg_rotate.php?src='. $src. '&w=650"></a></td><td class="cell2">';
+		else print '<td class="cell1"><a href="'. $dir .'/source.php?pic=' . $src . '"><img src="./'. $dir .'/thumb.php?src='. $src. '&w=650"></a></td><td class="cell2">';
 
 	if ($before_filename) {										// Display the before thumb, if it exists
 																//  If it is a jpeg include the exif rotation logic
