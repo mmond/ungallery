@@ -1,6 +1,6 @@
 <?
-$dir = "ungallery";
-$hidden = file_get_contents("pics/hidden.txt");
+$dir = "wp-content/plugins/ungallery";
+$hidden = file_get_contents("wp-content/plugins/ungallery/pics/hidden.txt");
 $gallery = $_GET['gallerylink'];
 $src = $_GET['src'];
 $w = $_GET['w'];
@@ -57,7 +57,7 @@ if($movie_array) {
 	print "Movies:&nbsp;&nbsp;";
 	foreach ($movie_array as $filename => $filesize) {
 		print  '
-			<a href="../pics/'. $parentpath.$subdir.$filename. '" title="Movies may take much longer to download.  This file size is '. $filesize .'">'	.$filename.'</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+			<a href="pics/'. $parentpath.$subdir.$filename. '" title="Movies may take much longer to download.  This file size is '. $filesize .'">'	.$filename.'</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
 	}
 }
 closedir($dp);
@@ -92,9 +92,9 @@ if (!isset($src) && isset($pic_array)) {							//	If we are not in browse view,
 	$column = 0;
 	foreach ($pic_array as $filename) {								//  Use the pic_array to assign the links and img src
 		if(stristr($filename, ".JPG")) {
-			print '<a href="?gallery&src=../pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/jpeg_rotate.php?src=../pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>'; 				//  If it is a jpeg include the exif rotation logic
+			print '<a href="?gallery&src=pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/jpeg_rotate.php?src=pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>'; 				//  If it is a jpeg include the exif rotation logic
 	   	} else {
-			print '<a href="?gallery&src=../pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/thumb.php?src=../pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>';    
+			print '<a href="?gallery&src=pics/'.$gallery. "/" .$filename.'"><img src="'. $dir .'/thumb.php?src=pics/'.$gallery. "/". $filename.'&w=' .$w. '"></a>';    
 		}
 		$column++;
 		if ( $column == 5 ) {
@@ -104,7 +104,7 @@ if (!isset($src) && isset($pic_array)) {							//	If we are not in browse view,
 	}	
 } else {														// Render the browsing version, link to original, last/next picture, and link to parent gallery
 if (isset($src)) {
-	if (!strstr($src, "../pics/")) die;     					//  If "../pics" is not in path it may be an attempt to read files outside gallery, so redirect to gallery root
+	if (!strstr($src, "pics/")) die;     					//  If "pics" is not in path it may be an attempt to read files outside gallery, so redirect to gallery root
 	$filename = substr($src, $lastslash + 1);
 	$before_filename = $pic_array[array_search($filename, $pic_array) - 1 ];
 	$after_filename = $pic_array[array_search($filename, $pic_array) + 1 ];
@@ -117,13 +117,13 @@ if (isset($src)) {
 
 	if ($before_filename) {										// Display the before thumb, if it exists
 																//  If it is a jpeg include the exif rotation logic
-		if(stristr($before_filename, ".JPG")) print '<a href="?gallery&src=../pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=../pics/' .$gallery.$before_filename .'"></a>';
-		else print '<a href="?gallery&src=../pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/thumb.php?src=../pics/' .$gallery.$before_filename .'"></a>';
+		if(stristr($before_filename, ".JPG")) print '<a href="?gallery&src=pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=pics/' .$gallery.$before_filename .'"></a>';
+		else print '<a href="?gallery&src=pics/' . $gallery.$before_filename .'" title="Previous Gallery Picture"><img src="'. $dir .'/thumb.php?src=pics/' .$gallery.$before_filename .'"></a>';
 	}
 print "<br><br><br><br>";
 	if ($after_filename) {										// Display the after thumb, if it exists
-		if(stristr($after_filename, ".JPG")) print '<a href="?gallery&src=../pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=../pics/' .$gallery.$after_filename .'"></a>';		
-		else print '<a href="?gallery&src=../pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/thumb.php?src=../pics/' .$gallery.$after_filename .'"></a>';
+		if(stristr($after_filename, ".JPG")) print '<a href="?gallery&src=pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/jpeg_rotate.php?src=pics/' .$gallery.$after_filename .'"></a>';		
+		else print '<a href="?gallery&src=pics/' . $gallery.$after_filename .'" title="Next Gallery Picture"><img src="'. $dir .'/thumb.php?src=pics/' .$gallery.$after_filename .'"></a>';
 	}
 }
 }
