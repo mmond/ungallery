@@ -1,7 +1,7 @@
 <?
 $dir = "wp-content/plugins/ungallery/";
 $pic_root = $_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/ungallery/pics/";
-$hidden = file_get_contents("wp-content/plugins/ungallery/pics/hidden.txt");
+$hidden = file_get_contents("wp-content/plugins/ungallery/hidden.txt");
 $gallery = $_GET['gallerylink'];
 $src = $_GET['src'];
 $w = $_GET['w'];
