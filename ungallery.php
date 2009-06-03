@@ -61,18 +61,14 @@ if($movie_array) {
 	}
 }
 closedir($dp);
-
 print '&nbsp;/&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Sub Galleries&nbsp;:&nbsp;&nbsp;';
-									//  Render the Subdirectory links
-$dp = opendir($pic_root.$gallery);
 
-									//  If it is a subdir and not set as hidden, enter it into the array
-while ($subdir = readdir($dp)) {
+$dp = opendir($pic_root.$gallery);	//  Render the Subdirectory links
+while ($subdir = readdir($dp)) {	//  If it is a subdir and not set as hidden, enter it into the array
 	if (is_dir($pic_root.$gallery. "/". $subdir) && $subdir !="thumb_cache" && $subdir != "." && $subdir != ".." && !strstr($subdir, $hidden)) {
 		$subdirs[] = $subdir;
 	}
 }
-
 if($subdirs) {						//  List each subdir and link
 	sort($subdirs);	
 	foreach ($subdirs as $key => $subdir) {
