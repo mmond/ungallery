@@ -1,4 +1,12 @@
 <?
+/*
+Plugin Name: UnGallery
+Plugin URI: http://markpreynolds.com/technology/wordpress-ungallery
+Version: 0.8
+Author: Mark Reynolds
+Description: Imports directories of pictures as a browsable WordPress gallery.
+*/
+
 $dir = "wp-content/plugins/ungallery/";
 $pic_root = $_SERVER['DOCUMENT_ROOT']."/wp-content/plugins/ungallery/pics/";
 $hidden = file_get_contents("wp-content/plugins/ungallery/hidden.txt");

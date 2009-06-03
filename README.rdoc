@@ -1,6 +1,6 @@
-= ungallery
+= UnGallery
 
-Imports a directory tree of graphic files and embeds them in WordPress.  The main value of Un Gallery is zero management of the photo gallery within WordPress.  After configuring Un Gallery, you can upload, move, delete and edit the photo files directly on the server.  Un Gallery will pick up all the changes made to the file hierarchy immediately.
+Imports directories of pictures as a browsable WordPress gallery.  The main value of UnGallery is zero management of the photo gallery within WordPress.  After installing the plugin, you upload, move, delete and edit the photo files directly.  UnGallery picks up the changes immediately.
 
 This script is still beta.  Feel free to use it, extend it or contact me with questions.
 
@@ -11,7 +11,7 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 == Features
 
 * Unlimited depth, breadth, and number of photos in library. Mine has approx 6,000.
-* Photo library is managed outside of WordPress, simply update via FTP, SCP, etc.  Un Gallery sees changes immediately.
+* Photo library is managed outside of WordPress, simply update via FTP, SCP, etc.  UnGallery sees changes immediately.
 * Set optional banner captions
 * Hidden, private galleries
 * Thumbnail cache files are added to photo directory for faster page loads
@@ -20,17 +20,14 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Gallery hierarchy breadcrumbs and with links to parent galleries and sub-galleries
 * Multiple gallery views:  Top level intro, thumbnails, browsing previous and next pictures.
 
-== Installation
-
 === Dependencies
 
-* PHP's GD lib on server
-* *nix file system (I assume)
+* PHP's GD lib on server. This is mostly standard these days.
 * Exec-PHP WordPress Plugin
 * Enable permalinks per http://teamtutorials.com/web-development-tutorials/clean-url%E2%80%99s-with-wordpress 
 * Write permission to your photo directories. ungallery creates subdirectories called "thumb_cache" to store thumbnails for speed. 
 
-=== Steps
+=== Installation Steps
 
 * Install Exec-PHP plugin.  http://wordpress.org/extend/plugins/exec-php/
 * Install ungallery scripts to the /wp-content/plugins/ directory.  (currently via:  "git checkout git://github.com/mmond/ungallery.git")
