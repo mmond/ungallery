@@ -7,7 +7,7 @@ Author: Mark Reynolds
 Description: Imports directories of pictures as a browsable WordPress gallery.
 */
 
-if (strpos($_SERVER["REQUEST_URI"], "/gallery/zip")) {
+if (strpos($_SERVER["REQUEST_URI"], "gallery?zip")) {
 	add_filter('the_content', "zip");
 }	elseif (strpos($_SERVER["REQUEST_URI"], "/gallery") === 0) {
 	add_filter('the_content', "ungallery");
@@ -72,7 +72,7 @@ function ungallery() {
 		}
 	} 
 	if($pic_array) sort($pic_array);  
-	print '  <a href="./gallery?zip=' . $gallery . '" title="Download a zipped archive of all photos in this gallery">-zip-</a> /';
+	if ($_SERVER["REQUEST_URI"]  !== "/gallery") print '  / <a href="./gallery?zip=' . $gallery . '" title="Download a zipped archive of all photos in this gallery">-zip-</a> /';
 	if($movie_array) {					//print the movie items
 		print ' <br>Movies:&nbsp;&nbsp;';
 		foreach ($movie_array as $filename => $filesize) {
