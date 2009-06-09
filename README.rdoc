@@ -22,35 +22,41 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
 === Dependencies
 
-* PHP's GD lib on server. This is mostly standard these days.
-* Exec-PHP WordPress Plugin
-* Enable permalinks per http://teamtutorials.com/web-development-tutorials/clean-url%E2%80%99s-with-wordpress 
-* Write permission to your photo directories. ungallery creates subdirectories called "thumb_cache" to store thumbnails for speed. 
+* PHP GD lib on server. This is mostly standard these days.
+* Permalinks via Settings -> Permalinks -> Custom Structure -> /%category%/%postname%
+  More info here: http://teamtutorials.com/web-development-tutorials/clean-url%E2%80%99s-with-wordpress 
+* Write permission to the photo directories. UnGallery creates a "thumb_cache" to greatly improve performance. 
 
 === Installation Steps
 
-* Install Exec-PHP plugin.  http://wordpress.org/extend/plugins/exec-php/
-* Install ungallery scripts to the /wp-content/plugins/ directory.  (currently via:  "git checkout git://github.com/mmond/ungallery.git")
-* Create WordPress page called "Gallery" with the following php insert: <? include ("wp-content/plugins/ungallery/ungallery.php") ?>
-* Create a symlink called "pics" to your picture directory (recommended) or copy/move/create your photo directory tree to /wp-content/plugins/ungallery/pics/ 
+1. Upload the ungallery directory to your /wp-content/plugins/ directory. 
+2. Activate through the 'Plugins' menu in WordPress.
+3. Enable Permalinks: Settings -> Permalinks -> Custom Structure -> /%category%/%postname%
+4. Create a blank WordPress *Page* called "Gallery".
+5. Picture files go in the /pics/ subdirectory included or you can point to your own picture directory tree.  See Notes below.
 
-== To do
-
-* Make scripts a WordPress plugin
-* Fix styling to remove table background and hover colors
-* Enable zip archives
-* Go to current month link?
 
 == Notes
 
+* Create a symlink called "pics" to your picture directory (recommended) or copy/move/create your photo directory tree to /wp-content/plugins/ungallery/pics/ 
 * To display a caption over a gallery, add a file named banner.txt to that directory with the desired text.
-* The top level directory is intended to have a single, larger picture displayed, so only only one picture file should be placed there.
+* The top level directory is intended to have a larger marquee picture displayed, so only only one picture file should be placed in the top directory.
 * To mark a gallery hidden, edit the hidden.txt file. If the content of hidden.txt is: "hidden" for example then any directories you create named "hidden", will not be visible via gallery browsing.
+* The symlinking to or placing a directory of photos, within the WordPress install directories could effect backups of the WordPress file system.  If you archive the wp-content/plugins directory, be aware your gallery photos will be added to that routine.  If this is not desirable, adjust the backup script to exclude wp-content/plugins/ungallery/pics/.  I'll make the target dir configurable later and skip the need to symlink or place the gallery directories there.
 
+== To do
+
+* Make gallery directory target an admin page option
+* Make thumbnail caching optional
+* Allow URL's as gallery target
+* Add sizing options to admin page
+* Add caption creation to admin page
+* Add hidden text to admin page
+* Enable zip archives
 
 == Bugs
 
-* Empty directory messes up table formatting
+* Empty picture directory messes up table formatting
 * Arriving at the gallery page via a WordPress search widget breaks url args
 
 == License
