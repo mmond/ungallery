@@ -7,9 +7,9 @@ Author: Mark Reynolds
 Description: Imports directories of pictures as a browsable WordPress gallery.
 */
 
-if (strpos($_SERVER["REQUEST_URI"], "/gallery") === 0) {
+if (strpos($_SERVER["REQUEST_URI"], "/gallery/zip")) {
 	add_filter('the_content', "zip");
-}	elseif (strpos($_SERVER["REQUEST_URI"], "/gallery/zip")) {
+}	elseif (strpos($_SERVER["REQUEST_URI"], "/gallery") === 0) {
 	add_filter('the_content', "ungallery");
 }
 
