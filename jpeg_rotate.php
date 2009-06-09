@@ -37,7 +37,7 @@ $width   = false;
 $height  = false;
 $type    = false;
 $version = "0.9.1 beta";
-define("__DEFAULTTHUMBW__", 175);
+define("__DEFAULTTHUMBW__", 145);
 define("__MAXSIZE__", 940);
 getTheGets();
 

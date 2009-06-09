@@ -7,9 +7,14 @@ Author: Mark Reynolds
 Description: Imports directories of pictures as a browsable WordPress gallery.
 */
 
-if (strpos($_SERVER["REQUEST_URI"], "/gallery") == 0)  {
-	print strpos($_SERVER["REQUEST_URI"], "/gallery");
+if (strpos($_SERVER["REQUEST_URI"], "/gallery") === 0) {
+	add_filter('the_content', "zip");
+}	elseif (strpos($_SERVER["REQUEST_URI"], "/gallery/zip")) {
 	add_filter('the_content', "ungallery");
+}
+
+function zip() {
+	include ("zip.php");
 }
 
 function ungallery() {	
@@ -18,7 +23,10 @@ function ungallery() {
 	$hidden = file_get_contents($dir."hidden.txt");
 	$gallery = $_GET['gallerylink'];
 	$src = $_GET['src'];
-	$w = $_GET['w'];
+	$thumbW = 175;
+	$srcW = 650;
+	$topW = 650;
+	$w = $thumbW;
 
 	if (isset($src)) {		 				//	If we are browsing a gallery, get the gallery name from the src url
 		$lastslash =  strrpos($src, "/");	// 	Trim the filename off the end of the src link
@@ -49,8 +57,7 @@ function ungallery() {
 			}
 			$parentpath = $parentpath . "/";
 		}
-	}
-	
+	}	
 										// Create the arrays with the dir's media files
 	$dp = opendir($pic_root.$gallery);
 	while ($filename = readdir($dp)) {
@@ -65,17 +72,16 @@ function ungallery() {
 		}
 	} 
 	if($pic_array) sort($pic_array);  
-
-										//print the movie items
-	if($movie_array) {
-		print " / <br>Movies:&nbsp;&nbsp;";
+	print '  <a href="./gallery?zip=' . $gallery . '" title="Download a zipped archive of all photos in this gallery">-zip-</a> /';
+	if($movie_array) {					//print the movie items
+		print ' <br>Movies:&nbsp;&nbsp;';
 		foreach ($movie_array as $filename => $filesize) {
 			print  '
-				<a href="'.$dir.'pics/'. substr($parentpath, 0, strlen($parentpath) -1).$subdir.'/'.$filename. '" title="Movies may take much longer to download.  This file size is '. $filesize .'">'	.$filename.'</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				<a href="'.$dir.'pics/'. substr($parentpath, 0, strlen($parentpath) -1).$subdir.'/'.$filename. '" title="Movies may take much longer to download.  This file size is '. $filesize .'">'	.$filename.'</a>&nbsp;&nbsp;/&nbsp;&nbsp;';
 		}
 	}
 	closedir($dp);
-	print '&nbsp;/&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Sub Galleries&nbsp;:&nbsp;&nbsp;';
+	print '&nbsp;&nbsp;&nbsp;<br>&nbsp;&nbsp;&nbsp;&nbsp;Sub Galleries&nbsp;:&nbsp;&nbsp;';
 
 	$dp = opendir($pic_root.$gallery);	//  Render the Subdirectory links
 	while ($subdir = readdir($dp)) {	//  If it is a subdir and not set as hidden, enter it into the array
@@ -93,7 +99,7 @@ function ungallery() {
 	print '</b><br>';
 
 	if (!isset($src) && isset($pic_array)) {							//	If we are not in browse view,
-		if ($gallery == "") $w=650;										//  Set size of top level gallery picture
+		if ($gallery == "") $w = $topW;									//  Set size of top level gallery picture
 		print '<table class="one-cell"><tr><td class="cell1">';			//	Begin the WordPress Atahualpa 1 cell table
 		if (file_exists("pics/".$gallery."/banner.txt")) {
 			print '<div class="post-headline"><h1>'; 
@@ -123,8 +129,8 @@ function ungallery() {
 																	//  Display the current/websize pic
 																	//  If it is a jpeg include the exif rotation logic
 		print '<table class="one-cell"><tr>';						//	Begin the WordPress Atahualpa 2 cell table
-		if(stristr($src, ".JPG")) print '<td class="cell1"><a href="'. $dir .'source.php?pic=' . $src . '"><img src="./'. $dir .'jpeg_rotate.php?src='. $src. '&w=650"></a></td><td class="cell2">';
-			else print '<td class="cell1"><a href="'. $dir .'source.php?pic=' . $src . '"><img src="./'. $dir .'thumb.php?src='. $src. '&w=650"></a></td><td class="cell2">';
+		if(stristr($src, ".JPG")) print '<td class="cell1"><a href="'. $dir .'source.php?pic=' . $src . '"><img src="./'. $dir .'jpeg_rotate.php?src='. $src. '&w='. $srcW. '"></a></td><td class="cell2">';
+			else print '<td class="cell1"><a href="'. $dir .'source.php?pic=' . $src . '"><img src="./'. $dir .'thumb.php?src='. $src. '&w='. $srcW. '"></a></td><td class="cell2">';
 
 		if ($before_filename) {										// Display the before thumb, if it exists
 																	//  If it is a jpeg include the exif rotation logic

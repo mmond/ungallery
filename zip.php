@@ -1,8 +1,8 @@
 Building the archive now.... <br>
-
+<br>
 A summary will print below when the zip file is ready.  Depending on the number of photos it may take a few minutes to complete.  Your browser may even time out before it's ready.  If so, just hit refresh and this page will reload with the summary and zip file link. <br><br>
 <?
-$dir = "pics/" . $_GET['gallerylink'];
+$dir = "wp-content/plugins/ungallery/pics/" . $_GET['zip'];
 
 // Create the arrays with the dir's image files
 $dp = opendir($dir);
@@ -19,6 +19,6 @@ foreach ($pic_array as $filename) {
 $output = `zip -u -j $dir/pics.zip $media_files`;
 print "<pre>$output</pre>";
 
-print 'Complete. The file can be downloaded <a href="tools/gallery/source.php?zip=' . $dir . '/pics.zip">here</a>';
+print 'Complete. The file can be downloaded <a href="./' . $dir . '/pics.zip">here</a>';
 
 ?>
