@@ -21,4 +21,6 @@ print "<pre>$output</pre>";
 
 print 'Complete. The file can be downloaded <a href="./' . $dir . '/pics.zip">here</a>';
 
+print  '<br><br>You can return to gallery <a href="./gallery?gallerylink=' . $_GET['zip'] .'">here.</a>';
+
 ?>
