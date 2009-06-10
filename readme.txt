@@ -1,14 +1,30 @@
-= UnGallery
+=== UnGallery ===
+Contributors: mmond
+Tags: gallery
+Requires at least: 
+Tested up to: 2.7.1
+Stable tag: 
 
-Imports directories of pictures as a browsable WordPress gallery.  The main value of UnGallery is zero management of the photo gallery within WordPress.  After installing the plugin, you upload, move, delete and edit the photo files directly.  UnGallery picks up the changes immediately.
+Imports directories of pictures as a browsable WordPress gallery.  
+
+== Description ==
+
+The main value of UnGallery is zero management of the photo gallery within WordPress.  After installing the plugin, you upload, move, delete and edit the photo files directly.  UnGallery picks up the changes immediately.
 
 This script is still beta.  Feel free to use it, extend it or contact me with questions.
-
 Much of the script is taken from other published sources and noted inline.
-
 Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 
-== Features
+=== Installation ===
+
+1. Upload the ungallery directory to your /wp-content/plugins/ directory. 
+1. Activate through the 'Plugins' menu in WordPress.
+1. Enable Permalinks: Settings -> Permalinks -> Custom Structure -> /%category%/%postname%
+1. Create a blank WordPress *Page* called "Gallery".
+1. Picture files go in the /pics/ subdirectory included or you can point to your own picture directory tree.  See Notes below.
+
+
+=== Features ===
 
 * Unlimited depth, breadth, and number of photos in library. Mine has approx 6,000.
 * Photo library is managed outside of WordPress, simply update via FTP, SCP, etc.  UnGallery sees changes immediately.
@@ -20,23 +36,15 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Gallery hierarchy breadcrumbs and with links to parent galleries and sub-galleries
 * Multiple gallery views:  Top level intro, thumbnails, browsing previous and next pictures.
 
-=== Dependencies
+=== Dependencies ===
 
 * PHP GD lib on server. This is mostly standard these days.
 * Permalinks via Settings -> Permalinks -> Custom Structure -> /%category%/%postname%
   More info here: http://teamtutorials.com/web-development-tutorials/clean-url%E2%80%99s-with-wordpress 
 * Write permission to the photo directories. UnGallery creates a "thumb_cache" to greatly improve performance. 
 
-=== Installation Steps
 
-1. Upload the ungallery directory to your /wp-content/plugins/ directory. 
-2. Activate through the 'Plugins' menu in WordPress.
-3. Enable Permalinks: Settings -> Permalinks -> Custom Structure -> /%category%/%postname%
-4. Create a blank WordPress *Page* called "Gallery".
-5. Picture files go in the /pics/ subdirectory included or you can point to your own picture directory tree.  See Notes below.
-
-
-== Notes
+=== Notes ===
 
 * Create a symlink called "pics" to your picture directory (recommended) or copy/move/create your photo directory tree to /wp-content/plugins/ungallery/pics/ 
 * To display a caption over a gallery, add a file named banner.txt to that directory with the desired text.
@@ -45,7 +53,7 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * The symlinking to or placing a directory of photos, within the WordPress install directories could effect backups of the WordPress file system.  If you archive the wp-content/plugins directory, be aware your gallery photos will be added to that routine.  If this is not desirable, adjust the backup script to exclude wp-content/plugins/ungallery/pics/.  I'll make the target dir configurable later and skip the need to symlink or place the gallery directories there.
 * If you'd like to modify the size of the large pic and the thumbnails displayed, edit ./ungallery/ungallery.php.  The place to do this is noted inline, near the top of the file.
 
-== To do
+=== To do ===
 
 * Make gallery directory target an admin page option
 * Make thumbnail caching optional
@@ -54,12 +62,12 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Add caption creation to admin page
 * Add hidden text to admin page
 
-== Bugs
+=== Bugs ===
 
 * Empty picture directory messes up table formatting
 * Arriving at the gallery page via a WordPress search widget breaks url args
 
-== License
+=== License ===
 
 The MIT License
 
