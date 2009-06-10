@@ -43,6 +43,7 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * The top level directory is intended to have a larger marquee picture displayed, so only only one picture file should be placed in the top directory.
 * To mark a gallery hidden, edit the hidden.txt file. If the content of hidden.txt is: "hidden" for example then any directories you create named "hidden", will not be visible via gallery browsing.
 * The symlinking to or placing a directory of photos, within the WordPress install directories could effect backups of the WordPress file system.  If you archive the wp-content/plugins directory, be aware your gallery photos will be added to that routine.  If this is not desirable, adjust the backup script to exclude wp-content/plugins/ungallery/pics/.  I'll make the target dir configurable later and skip the need to symlink or place the gallery directories there.
+* If you'd like to modify the size of the large pic and the thumbnails displayed, edit ./ungallery/ungallery.php.  The place to do this is noted inline, near the top of the file.
 
 == To do
 
@@ -52,7 +53,6 @@ Mark Reynolds (http://markpreynolds.com) http://github.com/mmond
 * Add sizing options to admin page
 * Add caption creation to admin page
 * Add hidden text to admin page
-* Enable zip archives
 
 == Bugs
 

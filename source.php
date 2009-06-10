@@ -16,11 +16,11 @@ if ($_GET['pic']) {
 } 
 if ($_GET['zip']) {
 	
-	$path = "../../" . $_GET['zip'];
+	$path = $_GET['zip'];
 	$len = filesize($path);
 
 	$lastslash =  strrpos($path, "/");
-	$filename =  substr($path, $lastslash + 1);   
+	$filename =  substr($path, $lastslash + 1);
 	
 	header('Content-type: application/x-zip-compressed');
 	header('Content-Length: $len');

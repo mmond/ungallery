@@ -23,9 +23,9 @@ function ungallery() {
 	$hidden = file_get_contents($dir."hidden.txt");
 	$gallery = $_GET['gallerylink'];
 	$src = $_GET['src'];
-	$thumbW = 175;
-	$srcW = 650;
-	$topW = 650;
+	$thumbW = 175;							//	Change this value to modify the thumbnail displayed
+	$srcW = 650;							//	Change this value to modify the large picture displayed
+	$topW = 650;							//	Change this value to modify the top level picture displayed
 	$w = $thumbW;
 
 	if (isset($src)) {		 				//	If we are browsing a gallery, get the gallery name from the src url
