@@ -63,21 +63,22 @@ function ungallery() {
 	while ($filename = readdir($dp)) {
 		if (!is_dir($pic_root.$gallery. "/". $filename))  {  // If it's a file, begin
 				$pic_types = array("JPG", "jpg", "GIF", "gif", "PNG", "png"); 		
-				if (in_array(substr($filename, -3), $pic_types)) $pic_array[] = $filename;							// If it's a picture, add it to thumb array
-				else {
+				if (in_array(substr($filename, -3), $pic_types)) {
+					$pic_array[] = $filename;							// If it's a picture, add it to thumb array
+				} else {
 					$movie_types = array("AVI", "avi", "MOV", "mov", "MP3", "mp3", "MP4", "mp4");								
 					if (in_array(substr($filename, -3), $movie_types)) $movie_array[$filename] = size_readable(filesize($pic_root.$gallery. "/". $filename)); 	
 										// If it's a movie, add name and size to the movie array
 				}						
 		}
 	} 
-	if($pic_array) sort($pic_array);  
+	if($pic_array) sort($pic_array);	// Display the zip file link
 	if ($_SERVER["REQUEST_URI"]  !== "/gallery") print '  / <a href="./gallery?zip=' . $gallery . '" title="Download a zipped archive of all photos in this gallery">-zip-</a> /';
-	if($movie_array) {					//print the movie items
+	if($movie_array) {					// Display the movie items
 		print ' <br>Movies:&nbsp;&nbsp;';
 		foreach ($movie_array as $filename => $filesize) {
 			print  '
-				<a href="'.$dir.'pics/'. substr($parentpath, 0, strlen($parentpath) -1).$subdir.'/'.$filename. '" title="Movies may take much longer to download.  This file size is '. $filesize .'">'	.$filename.'</a>&nbsp;&nbsp;/&nbsp;&nbsp;';
+				<a href="'.$dir.'source.php?movie=pics/'. substr($parentpath, 0, strlen($parentpath) -1).$subdir.'/'.$filename. '" title="Movies may take much longer to download.  This file size is '. $filesize .'">'	.$filename.'</a>&nbsp;&nbsp;/&nbsp;&nbsp;';
 		}
 	}
 	closedir($dp);
