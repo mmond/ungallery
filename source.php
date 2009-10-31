@@ -2,6 +2,18 @@
 // 	Choose the URL argument being passed to source.php
 //	Build the content type link based on file type
 
+if ($_GET['zip']) {
+	$filename = $_GET['zip'];
+	$len = filesize($filename);
+	$lastslash =  strrpos($filename, "/");
+	$name =  substr($filename, $lastslash + 1);
+	
+	header('Content-type: application/x-zip-compressed');
+	header('Content-Length: $len');
+	header('Content-Disposition: attachment; filename="' . $name . '"');  // Create a download stream link
+	readfile($filename);	
+}
+
 if ($_GET['pic']) {
 	$filename = $_GET['pic'];
 	$len = filesize($filename);
@@ -14,19 +26,6 @@ if ($_GET['pic']) {
 	header('Content-Disposition: inline; filename="'.$name.'"');	//  Render the photo inline.
 	readfile($filename);
 } 
-if ($_GET['zip']) {
-	
-	$path = $_GET['zip'];
-	$len = filesize($path);
-
-	$lastslash =  strrpos($path, "/");
-	$filename =  substr($path, $lastslash + 1);
-	
-	header('Content-type: application/x-zip-compressed');
-	header('Content-Length: $len');
-	header('Content-Disposition: attachment; filename="' . $filename . '"');  // Create a download stream link
-	readfile($path);	
-}
 
 if ($_GET['movie']) {
 	$filename = $_GET['movie'];
